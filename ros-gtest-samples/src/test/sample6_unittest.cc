@@ -29,12 +29,17 @@
 //
 // Author: wan@google.com (Zhanyong Wan)
 
+// Date: 2014-03
+// Modified version to adapt the code to ROS structure
+//
+// Author: victor.gonzalez@uc3m.es (Victor Gonzalez-Pacheco)
+
 // This sample shows how to test common properties of multiple
 // implementations of the same interface (aka interface tests).
 
 // The interface and its implementations are in this header.
-#include "prime_tables.h"
 
+#include "../prime_tables.h"
 #include "gtest/gtest.h"
 
 // First, we define some factory functions for creating instances of
@@ -222,3 +227,8 @@ INSTANTIATE_TYPED_TEST_CASE_P(OnTheFlyAndPreCalculated,    // Instance name
                               PrimeTableImplementations);  // Type list
 
 #endif  // GTEST_HAS_TYPED_TEST_P
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}

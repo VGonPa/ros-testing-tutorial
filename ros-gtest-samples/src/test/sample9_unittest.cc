@@ -28,12 +28,16 @@
 //
 // Author: vladl@google.com (Vlad Losev)
 
+// Date: 2014-03
+// Modified version to adapt the code to ROS structure
+//
+// Author: victor.gonzalez@uc3m.es (Victor Gonzalez-Pacheco)
+
 // This sample shows how to use Google Test listener API to implement
 // an alternative console output and how to use the UnitTest reflection API
 // to enumerate test cases and tests and to inspect their results.
 
 #include <stdio.h>
-
 #include "gtest/gtest.h"
 
 using ::testing::EmptyTestEventListener;

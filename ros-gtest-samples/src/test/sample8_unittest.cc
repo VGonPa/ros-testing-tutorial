@@ -29,12 +29,17 @@
 //
 // Author: vladl@google.com (Vlad Losev)
 
+// Date: 2014-03
+// Modified version to adapt the code to ROS structure
+//
+// Author: victor.gonzalez@uc3m.es (Victor Gonzalez-Pacheco)
+
 // This sample shows how to test code relying on some global flag variables.
 // Combine() helps with generating all possible combinations of such flags,
 // and each test is given one combination as a parameter.
 
 // Use class definitions to test from this header.
-#include "prime_tables.h"
+#include "../prime_tables.h"
 
 #include "gtest/gtest.h"
 
@@ -171,3 +176,9 @@ INSTANTIATE_TEST_CASE_P(MeaningfulTestParameters,
 TEST(DummyTest, CombineIsNotSupportedOnThisPlatform) {}
 
 #endif  // GTEST_HAS_COMBINE
+
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}

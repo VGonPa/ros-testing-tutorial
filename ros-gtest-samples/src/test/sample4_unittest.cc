@@ -29,8 +29,13 @@
 //
 // Author: wan@google.com (Zhanyong Wan)
 
+// Date: 2014-03
+// Modified version to adapt the code to ROS structure
+//
+// Author: victor.gonzalez@uc3m.es (Victor Gonzalez-Pacheco)
+
 #include "gtest/gtest.h"
-#include "sample4.h"
+#include "../sample4.h"
 
 // Tests the Increment() method.
 TEST(Counter, Increment) {
@@ -42,4 +47,9 @@ TEST(Counter, Increment) {
   EXPECT_EQ(0, c.Increment());
   EXPECT_EQ(1, c.Increment());
   EXPECT_EQ(2, c.Increment());
+}
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

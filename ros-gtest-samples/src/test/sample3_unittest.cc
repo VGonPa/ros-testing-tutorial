@@ -31,6 +31,10 @@
 //
 // Author: wan@google.com (Zhanyong Wan)
 
+// Date: 2014-03
+// Modified version to adapt the code to ROS structure
+//
+// Author: victor.gonzalez@uc3m.es (Victor Gonzalez-Pacheco)
 
 // In this example, we use a more advanced feature of Google Test called
 // test fixture.
@@ -63,7 +67,7 @@
 //
 // </TechnicalDetails>
 
-#include "sample3-inl.h"
+#include "../sample3-inl.h"
 #include "gtest/gtest.h"
 
 // To use a test fixture, derive a class from testing::Test.
@@ -148,4 +152,9 @@ TEST_F(QueueTest, Map) {
   MapTester(&q0_);
   MapTester(&q1_);
   MapTester(&q2_);
+}
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

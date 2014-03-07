@@ -29,6 +29,11 @@
 //
 // Author: wan@google.com (Zhanyong Wan)
 
+// Date: 2014-03
+// Modified version to adapt the code to ROS structure
+//
+// Author: victor.gonzalez@uc3m.es (Victor Gonzalez-Pacheco)
+
 // This sample teaches how to reuse a test fixture in multiple test
 // cases by deriving sub-fixtures from it.
 //
@@ -46,9 +51,9 @@
 
 #include <limits.h>
 #include <time.h>
-#include "sample3-inl.h"
+#include "../sample1.h"
+#include "../sample3-inl.h"
 #include "gtest/gtest.h"
-#include "sample1.h"
 
 // In this sample, we want to ensure that every test finishes within
 // ~5 seconds.  If a test takes longer to run, we consider it a
@@ -197,3 +202,8 @@ TEST_F(QueueTest, Dequeue) {
 // QueueTest.  Google Test imposes no limit on how deep the hierarchy
 // can be.  In practice, however, you probably don't want it to be too
 // deep as to be confusing.
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}

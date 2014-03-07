@@ -31,6 +31,12 @@
 //
 // Author: wan@google.com (Zhanyong Wan)
 
+// Date: 2014-03
+// Modified version to adapt the code to ROS structure
+//
+// Author: victor.gonzalez@uc3m.es (Victor Gonzalez-Pacheco)
+
+
 
 // This sample shows how to write a more complex unit test for a class
 // that has multiple member functions.
@@ -40,7 +46,7 @@
 // your tests organized.  You may also throw in additional tests as
 // needed.
 
-#include "sample2.h"
+#include "../sample2.h"
 #include "gtest/gtest.h"
 
 // In this example, we test the MyString class (a simple string).
@@ -106,4 +112,9 @@ TEST(MyString, Set) {
   // Can we set the MyString to NULL?
   s.Set(NULL);
   EXPECT_STREQ(NULL, s.c_string());
+}
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
