@@ -9,6 +9,8 @@
   <review status="unreviewed" notes=""/>
   <url>https://github.com/VGonPa/ros-testing-seminar</url>
 
+  <depend package="roscpp"/>
+
 </package>
 
 
