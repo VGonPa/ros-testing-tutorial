@@ -1,13 +1,13 @@
 <package>
-  <description brief="learning_gtest">
+  <description brief="ros-gtest-samples">
 
-     learning_gtest
+      Samples from Google Test documentation adapted to work with ros
 
   </description>
-  <author>Víctor González</author>
-  <license>BSD</license>
+  <author>Victor Gonzalez-Pacheco (victor.gonzalez@uc3m.es)</author>
+  <license>GPLv3</license>
   <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/learning_gtest</url>
+  <url>https://github.com/VGonPa/ros-testing-seminar</url>
 
 </package>
 
