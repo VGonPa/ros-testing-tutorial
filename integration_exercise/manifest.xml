@@ -1,5 +1,5 @@
 <package>
-  <description brief="rostest_node_example">
+  <description brief="integration_exercise">
 
      An integration exercise.
      1) Modify counter_node so it can be started with any number. 
