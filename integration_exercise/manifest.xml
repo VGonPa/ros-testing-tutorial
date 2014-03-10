@@ -1,8 +1,16 @@
 <package>
   <description brief="rostest_node_example">
 
-     Examples of gtest + rostest to test node the API of a node
+     An integration exercise.
+     1) Modify counter_node so it can be started with any number. 
+        It should be loaded by a ros_param on init.
 
+     2) Create a Factorial node that receives the input from counter_node 
+        and publishes the factorial of the received number
+
+     3) Demonstrate that the system works using an integration test.
+
+     
   </description>
   <author>Victor Gonzalez-Pacheco</author>
   <license>GPLv3</license>
