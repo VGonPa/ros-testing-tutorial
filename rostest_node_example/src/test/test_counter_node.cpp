@@ -1,34 +1,3 @@
-// Copyright 2005, Google Inc.
-// All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are
-// met:
-//
-//     * Redistributions of source code must retain the above copyright
-// notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above
-// copyright notice, this list of conditions and the following disclaimer
-// in the documentation and/or other materials provided with the
-// distribution.
-//     * Neither the name of Google Inc. nor the names of its
-// contributors may be used to endorse or promote products derived from
-// this software without specific prior written permission.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-// Author: wan@google.com (Zhanyong Wan)
-
 // Date: 2014-03
 // Modified version to adapt the code to ROS structure
 //
@@ -40,24 +9,63 @@
 #include "ros/ros.h"
 #include "std_msgs/Int16.h"
 
+
+class CallbackCounter : public testing::Test {
+ protected:
+  // Remember that SetUp() is run immediately before a test starts.
+  virtual void SetUp() {
+    count_msgs_ = 0;
+    counter_pub_ = nh_.advertise<std_msgs::Int16>("increment", 1000);
+    sub_ = nh_.subscribe("counter", 1, &CallbackCounter::callback, this);
+  }
+
+  // TearDown() is invoked immediately after a test finishes.
+  virtual void TearDown() {
+  }
+
+  ros::NodeHandle nh_;
+  int count_msgs_;
+  ros::Publisher counter_pub_;
+  ros::Subscriber sub_;
+
+ public:
+  void callback(const std_msgs::Int16ConstPtr& message){
+    count_msgs_++;
+  }
+
+  int get_count(){
+      return count_msgs_;
+  }
+};
+
 // Tests the Increment() method.
-TEST(CounterN, IncrementInNode) {
-    ros::init(argc, argv, "test_counter");
+TEST_F(CallbackCounter, TestCounter_Node) {
 
-    CounterNode cn;
+    std_msgs::Int16 msg;
+    ros::Rate loop_rate(1);
+    msg.data = 0;
 
+    counter_pub_.publish(msg);
+    loop_rate.sleep();      // Give some time the message to arrive
     ros::spinOnce();
+    EXPECT_EQ(0, this->get_count());
 
-  // EXPECT_EQ() evaluates its arguments exactly once, so they
-  // can have side effects.
+    counter_pub_.publish(msg);
+    loop_rate.sleep();
+    ros::spinOnce();
+    EXPECT_EQ(1, this->get_count());
 
-  EXPECT_EQ(0, c.Increment());
-  EXPECT_EQ(1, c.Increment());
-  EXPECT_EQ(2, c.Increment());
+    counter_pub_.publish(msg);
+    loop_rate.sleep();
+    ros::spinOnce();
+    EXPECT_EQ(2, this->get_count());
+
 }
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
+  ros::init(argc, argv, "counter_node_test");
+
   return RUN_ALL_TESTS();
 }
 
