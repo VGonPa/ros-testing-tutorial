@@ -1,0 +1,16 @@
+<package>
+  <description brief="rostest_node_example">
+
+     Examples of gtest + rostest to test node the API of a node
+
+  </description>
+  <author>Victor Gonzalez-Pacheco</author>
+  <license>GPLv3</license>
+  <review status="unreviewed" notes=""/>
+  <url>https://github.com/VGonPa/ros-testing-seminar</url>
+
+  <depend package="roscpp"/>
+
+</package>
+
+

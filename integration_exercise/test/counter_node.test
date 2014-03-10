@@ -1,0 +1,12 @@
+<launch>
+  <node name="counter_node" 
+        pkg="rostest_node_example" 
+        type="counter_node" 
+        required="true" output="screen"/>
+
+  <test test-name="TestCounterNode"
+        pkg="rostest_node_example"
+        type="test_counter_node"
+        time-limit="60.0"/>
+        
+</launch>
