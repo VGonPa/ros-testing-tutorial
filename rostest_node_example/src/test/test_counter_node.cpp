@@ -36,10 +36,17 @@
 
 #include "gtest/gtest.h"
 #include "../sample4.h"
+#include "../counter_node.hpp"
+#include "ros/ros.h"
+#include "std_msgs/Int16.h"
 
 // Tests the Increment() method.
-TEST(Counter, Increment) {
-  Counter c;
+TEST(CounterN, IncrementInNode) {
+    ros::init(argc, argv, "test_counter");
+
+    CounterNode cn;
+
+    ros::spinOnce();
 
   // EXPECT_EQ() evaluates its arguments exactly once, so they
   // can have side effects.
