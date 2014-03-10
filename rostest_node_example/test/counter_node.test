@@ -6,7 +6,7 @@
 
   <test test-name="TestCounterNode"
         pkg="rostest_node_example"
-        type="bin/test/test_counter_node"
+        type="test_counter_node"
         time-limit="60.0"/>
         
 </launch>
