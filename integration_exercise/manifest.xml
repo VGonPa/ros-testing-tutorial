@@ -2,13 +2,13 @@
   <description brief="integration_exercise">
 
      An integration exercise.
-     1) Modify counter_node so it can be started with any number. 
+     1) Modify counter_node (and its library) so it can be started with any number. 
         It should be loaded by a ros_param on init.
 
      2) Create a Factorial node that receives the input from counter_node 
         and publishes the factorial of the received number
 
-     3) Demonstrate that the system works using an integration test.
+     3) Demonstrate that the system works using an unit + node + integration tests.
 
      
   </description>
